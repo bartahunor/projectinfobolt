@@ -51,10 +51,8 @@
 </div>
 <nav class="flex items-center gap-6">
 <div class="hidden lg:flex items-center gap-6 text-sm font-medium">
-<a class="text-primary font-semibold" href="#">Kezdőlap</a>
-<a class="hover:text-primary transition-colors" href="#">Termékkatalógus</a>
-<a class="hover:text-primary transition-colors" href="#">Kapcsolat</a>
-</div>
+<a class="hover:text-primary transition-colors" href="#homepage.html">Kezdőoldal</a>
+<a class="hover:text-primary transition-colors" href="#items.html">Termékkatalógus</a>
 </div>
 <!-- Nav Links & Icons -->
 <nav class="flex items-center gap-6">
@@ -63,7 +61,7 @@
 <div class="flex items-center gap-2">
 <button class="relative p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
 <span class="material-symbols-outlined">shopping_cart</span>
-<span class="absolute top-1 right-1 bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+<span class="absolute top-1 right-1 bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full"></span><!---Termék szam-->
 </button>
 
 </button>
@@ -76,57 +74,16 @@
 <!-- Sidebar Filters -->
 <aside class="w-full lg:w-64 shrink-0 space-y-8">
 <!-- Categories -->
-<div>
-<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-4">Kategóriák</h3>
-<div class="space-y-1">
-<a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg font-medium" href="#">
-<span class="material-symbols-outlined text-[20px]">grid_view</span>
-<span>Összes termék</span>
-</a>
-<a class="flex items-center gap-3 px-3 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px]">devices</span>
-<span>Elektronika</span>
-</a>
-<a class="flex items-center gap-3 px-3 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px]">checkroom</span>
-<span>Ruházat</span>
-</a>
-<a class="flex items-center gap-3 px-3 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px]">home</span>
-<span>Otthon</span>
-</a>
-<a class="flex items-center gap-3 px-3 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px]">fitness_center</span>
-<span>Sport</span>
-</a>
-</div>
 </div>
 <!-- Price Range -->
 <div>
-<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-4">Ár tartomány</h3>
-<div class="px-2">
-<div class="relative h-1.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full">
-<div class="absolute left-0 right-1/4 h-full bg-primary rounded-full"></div>
-<div class="absolute left-0 -top-1.5 w-4 h-4 bg-primary border-2 border-white dark:border-background-dark rounded-full shadow-md"></div>
-<div class="absolute right-1/4 -top-1.5 w-4 h-4 bg-primary border-2 border-white dark:border-background-dark rounded-full shadow-md"></div>
-</div>
-<div class="flex justify-between mt-4 text-xs font-medium text-slate-600 dark:text-slate-400">
-<span>0 Ft</span>
-<span>375.000 Ft</span>
-</div>
-</div>
 </div>
 <!-- Status Filter -->
 <div>
-<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-4">Állapot</h3>
 <div class="space-y-2">
 <label class="flex items-center gap-3 cursor-pointer group">
-<input class="rounded text-primary focus:ring-primary w-5 h-5 bg-transparent border-slate-300 dark:border-slate-700" type="checkbox"/>
-<span class="text-sm group-hover:text-primary transition-colors">Akciós termékek</span>
 </label>
 <label class="flex items-center gap-3 cursor-pointer group">
-<input checked="" class="rounded text-primary focus:ring-primary w-5 h-5 bg-transparent border-slate-300 dark:border-slate-700" type="checkbox"/>
-<span class="text-sm group-hover:text-primary transition-colors">Raktáron</span>
 </label>
 </div>
 </div>
@@ -313,11 +270,6 @@
 <p class="text-sm text-slate-500">A prémium minőségű termékek lelőhelye. Gyors szállítás, megbízható garancia.</p>
 </div>
 <div>
-<h4 class="font-bold mb-4">Vásárlás</h4>
-<ul class="space-y-2 text-sm text-slate-500">
-<li><a class="hover:text-primary transition-colors" href="#">Szállítási információk</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Fizetési módok</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Garancia és visszaküldés</a></li>
 </ul>
 </div>
 <div>
@@ -329,15 +281,13 @@
 </ul>
 </div>
 <div>
-<h4 class="font-bold mb-4">Hírlevél</h4>
 <div class="flex gap-2">
-<input class="bg-slate-100 dark:bg-slate-800 border-none rounded-lg flex-1 text-sm focus:ring-primary" placeholder="Email címed" type="email"/>
-<button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold">Feliratkozás</button>
+
 </div>
 </div>
 </div>
 <div class="max-w-7xl mx-auto px-4 pt-12 mt-12 border-t border-slate-100 dark:border-slate-800 text-center text-xs text-slate-400">
-                © 2024 Webshop Kft. Minden jog fenntartva.
+                © 2026 Webshop Kft. Minden jog fenntartva.
             </div>
 </footer>
 </div>
