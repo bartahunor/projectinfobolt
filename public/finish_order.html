@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="hu"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Sikeres Rendelés és Számla</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen flex-col">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-8">
+<div class="flex items-center gap-2 shrink-0">
+<div class="bg-primary p-2 rounded-lg">
+<svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 48 48" i>
+<path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="text-xl font-bold tracking-tight">ClickTech-Webshop</span>
+</div>
+<div class="hidden md:flex flex-1 max-w-xl">
+<div class="relative w-full">
+</div>
+</div>
+<nav class="flex items-center gap-6">
+<div class="hidden lg:flex items-center gap-6 text-sm font-medium">
+<a class="hover:text-primary transition-colors" href="homepage.html">Kezdőoldal</a>
+<a class="hover:text-primary transition-colors" href="items.html">Termékkatalógus</a>
+</div>
+<div class="flex items-center gap-2">
+</button>
+
+</button>
+</div>
+</nav>
+</div>
+</header>
+<main class="flex-1 px-4 py-8 lg:px-40">
+<div class="max-w-[960px] mx-auto flex flex-col gap-8">
+<!-- Success Message Section -->
+<section class="flex flex-col items-center text-center gap-4 py-6">
+<div class="flex items-center justify-center size-20 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-5xl">check_circle</span>
+</div>
+<div class="flex flex-col gap-2">
+<h1 class="text-slate-900 dark:text-slate-100 text-3xl font-bold tracking-tight">Sikeres Rendelés!</h1>
+<p class="text-slate-600 dark:text-slate-400 text-lg max-w-lg">
+                        Köszönjük a vásárlást! Rendelését rögzítettük, a visszaigazolást és az e-számlát elküldtük a megadott e-mail címre.
+                    </p>
+</div>
+<div class="flex gap-4 mt-2">
+<button class="flex items-center justify-center rounded-lg h-11 px-6 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity" onclick="window.location.href='homepage.html'">
+                        Vissza a főoldalra
+                    </button>
+
+</div>
+</section>
+<!-- Invoice Preview (PDF Style) -->
+<section class="bg-white dark:bg-slate-900 rounded-xl shadow-xl overflow-hidden border border-slate-200 dark:border-slate-800">
+<!-- Invoice Header -->
+<div class="p-8 border-b border-slate-100 dark:border-slate-800 flex flex-col md:flex-row justify-between items-start gap-6">
+<div>
+<div class="flex items-center gap-2 text-primary mb-4">
+</div>
+</div>
+</div>
+<!-- Billing & Shipping Details -->
+<div class="grid md:grid-cols-2 gap-8 p-8 bg-slate-50/50 dark:bg-slate-800/30">
+<div class="space-y-2">
+<p class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Szállító</p>
+<p class="font-bold text-slate-900 dark:text-white">ClickTech Webshop Zrt.</p>
+<p class="text-sm text-slate-600 dark:text-slate-400">1117 Budapest, Infopark sétány 1.<br/>Adószám: 12345678-2-42<br/>Bankszámla: 11700000-00000000</p>
+</div>
+<div class="space-y-2">
+<p class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Vevő</p>
+<p class="font-bold text-slate-900 dark:text-white"></p><!-- Név betöltése -->
+<p class="text-sm text-slate-600 dark:text-slate-400"></p><!-- Lakcím -->
+</div>
+</div>
+<!-- Itemized List -->
+<div class="p-8 overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-slate-200 dark:border-slate-800">
+<th class="py-4 text-sm font-bold text-slate-900 dark:text-white">Termék megnevezése</th>
+<th class="py-4 text-sm font-bold text-slate-900 dark:text-white text-center">Mennyiség</th>
+<th class="py-4 text-sm font-bold text-slate-900 dark:text-white text-right">Egységár</th>
+<th class="py-4 text-sm font-bold text-slate-900 dark:text-white text-right">Összesen</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr>
+<td class="py-4">
+<p class="font-medium text-slate-900 dark:text-white">Pro Studio Fejhallgató - Fekete</p><!-- termek neve -->
+
+</td>
+<td class="py-4 text-center text-slate-600 dark:text-slate-400"></td><!-- termek db -->
+<td class="py-4 text-right text-slate-600 dark:text-slate-400"></td><!-- termek ár/db -->
+<td class="py-4 text-right font-medium text-slate-900 dark:text-white"></td><!-- összes ár (felszorozva a db vel) -->
+</tr>
+<tr>
+
+</table>
+</div>
+<!-- Totals -->
+<div class="p-8 bg-slate-50 dark:bg-slate-800/50 flex justify-end">
+<div class="w-full max-w-xs space-y-3">
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Nettó összesen:</span>
+<span class="text-slate-900 dark:text-white font-medium"></span><!-- össz ár -->
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">ÁFA (27%):</span>
+<span class="text-slate-900 dark:text-white font-medium"></span><!-- áfa ftbe kiszámítva -->
+</div>
+<div class="border-t border-slate-200 dark:border-slate-700 pt-3 flex justify-between items-center">
+<span class="text-lg font-bold text-slate-900 dark:text-white">Bruttó fizetendő:</span>
+<span class="text-2xl font-bold text-primary"></span><!-- ár áfával -->
+</div>
+</div>
+</div>
+<!-- Footer Note -->
+<div class="p-6 text-center border-t border-slate-100 dark:border-slate-800">
+<p class="text-xs text-slate-400 dark:text-slate-500 italic">Ez a bizonylat elektronikusan hitelesített, aláírás nélkül is érvényes.</p>
+</div>
+</section>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 mt-16 py-12">
+<div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<div class="bg-primary p-1.5 rounded-lg">
+<svg class="w-5 h-5 text-white" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="text-lg font-bold">ClickTech-Webshop</span>
+</div>
+<p class="text-sm text-slate-500">A prémium minőségű termékek lelőhelye. Gyors szállítás, megbízható garancia.</p>
+</div>
+<div>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4">Ügyfélszolgálat</h4>
+<ul class="space-y-2 text-sm text-slate-500">
+<li><a class="hover:text-primary transition-colors" href="#">Kapcsolat</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">GYIK</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Adatvédelmi nyilatkozat</a></li>
+</ul>
+</div>
+<div>
+<div class="flex gap-2">
+
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-4 pt-12 mt-12 border-t border-slate-100 dark:border-slate-800 text-center text-xs text-slate-400">
+                © 2026 Webshop Kft. Minden jog fenntartva.
+            </div>
+</footer>
+</div>
+</body></html>
