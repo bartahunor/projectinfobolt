@@ -1,0 +1,306 @@
+<html lang="hu"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Termék Adatlap - Modern Webshop</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 md:px-20 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-3xl">shopping_bag</span>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight">Modern Webshop</h2>
+</div>
+<label class="hidden lg:flex flex-col min-w-64 h-10">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-slate-500 flex border-none bg-slate-100 dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg" data-icon="MagnifyingGlass">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-0 h-full placeholder:text-slate-500 px-4 rounded-r-lg text-sm" placeholder="Keresés termékek között..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Termékek</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Akciók</a>
+<a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Rólunk</a>
+</nav>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-primary/10 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-xl">person</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-primary/10 hover:text-primary transition-all relative">
+<span class="material-symbols-outlined text-xl">shopping_cart</span>
+<span class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">3</span>
+</button>
+</div>
+</div>
+</header>
+<main class="mx-auto max-w-7xl w-full px-6 md:px-10 py-8">
+<!-- Breadcrumbs -->
+<nav class="flex flex-wrap gap-2 pb-6 items-center">
+<a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary" href="#">Főoldal</a>
+<span class="material-symbols-outlined text-slate-400 text-sm">chevron_right</span>
+<a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary" href="#">Elektronika</a>
+<span class="material-symbols-outlined text-slate-400 text-sm">chevron_right</span>
+<span class="text-slate-900 dark:text-slate-100 text-sm font-bold">Premium Wireless Headphones</span>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<!-- Product Gallery -->
+<div class="flex flex-col gap-4">
+<div class="w-full bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="aspect-square bg-center bg-no-repeat bg-cover" data-alt="High resolution studio shot of wireless headphones" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnRww62aJ1I8gd-xngU5A3gbrdGQGO6rGT3kOOqHP14s8d_ZDjdFEFonnd5TV9EAFYhnWqDNPKvw_r7C-t1xgiINxrbo-51zmyrRAHRzfi1MjTWek9T__R3KqUveli7SXFTxaY87ls2lPa9CAOSz0OibAXOZqc5ItbbLXRBmnxj9qKtzQG2tYJYmvy4ZBTxjsTzdsIYpc3vK9dQ18-5i7ZXtJWqvsX8CvrmxX7w4CplYKLFI0HCU5bpGLWi9Y7Vmjnd79RIwugcF0");'></div>
+</div>
+<div class="grid grid-cols-4 gap-4">
+<div class="aspect-square rounded-lg border-2 border-primary bg-center bg-no-repeat bg-cover cursor-pointer" data-alt="Close up detail of headphones padding" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBkb-8Nbz4HVg1vKEqikxAFljvnv-3SVv4JdVFRCNgYfT2mJJo-b276l2mwbKxjjAwb97vMO52uCXTzZo5Zm12EiORaQU6tG6DDr755opRVbu6qffSq7NIL5HdlRAPNx5XZdnt4unfj8sfD2Gcxo9R8ywd9JIrEqgWO8ur4pWJFK2WxOhY8F-sejzWrGJcHdXAFOHf3ZdihyzbkuaqQFT2Z7HnIUZgdJvpVVBBZjDBZHeh2EURrX_YycYBco6ubr-8ZzrnTEDJozNo");'></div>
+<div class="aspect-square rounded-lg border border-slate-200 dark:border-slate-800 bg-center bg-no-repeat bg-cover cursor-pointer" data-alt="Profile view of wireless headphones" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCwPPg9j1JO3SOI1GLrHEB1XFlOU99e69dSc8U-3SKyLjtBKMaX-JEjPquPChb5qDZLTRRRMqMQ7Iw8HgzTAHl_sHAcfMBjiyPI0WNBgdWf1fnDdN3Fs8i0lZL4z47gQgfCGVJs4ecAPUxpINW6Wl1gbay9c8F41u3rm38QaQBV3BER3gzhrDGXLBqT_9mpA0JAPC58MT375hFfDpzqW29bpT1ZVhAkt3lIFsOigfs5G6JrZCDRQY5IP6Utdp5vgLZSupCchhIhpeo");'></div>
+<div class="aspect-square rounded-lg border border-slate-200 dark:border-slate-800 bg-center bg-no-repeat bg-cover cursor-pointer" data-alt="Headphones from a different angle" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC62gaeUEgtsVzyfYwJpyDvCIZrmdeZBRkLBe5u_bF8UJuNgkQ70PcF2jBIKrEOBnLuJF8mLC6NB5JN7K51S1eRqk79mhQY_tbawWdNM297mY306hcMwuu673OVux68bG5Wo5swNh6SM4hnykM9va3CaQjjavORd_dFtqGi5T1S0bjYEzC7Duk_kbfSGmRUl33BIJUkygxrSNsWHy-W8jDEPWrq2ayvz1ybMtyx8cn6wX8OdWgH7ImVdeLadqMLBGmiWn28ShF9sxw");'></div>
+<div class="aspect-square rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-800 flex items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-slate-400">videocam</span>
+</div>
+</div>
+</div>
+<!-- Product Info -->
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary w-fit">Készleten</span>
+<h1 class="text-slate-900 dark:text-slate-100 text-4xl font-black leading-tight tracking-tight">Premium Wireless Noise-Cancelling Headphones</h1>
+<div class="flex items-center gap-4 mt-2">
+<div class="flex items-center text-amber-400">
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined">star_half</span>
+</div>
+<span class="text-slate-500 dark:text-slate-400 text-sm font-medium">4.8 (124 értékelés)</span>
+<span class="text-slate-300 dark:text-slate-700">|</span>
+<span class="text-slate-500 dark:text-slate-400 text-sm">Cikkszám: 592-PRO-X</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 border-y border-slate-200 dark:border-slate-800 py-6">
+<span class="text-slate-500 dark:text-slate-400 text-sm line-through">119.990 Ft</span>
+<div class="flex items-baseline gap-2">
+<span class="text-slate-900 dark:text-slate-100 text-4xl font-bold">89.990 Ft</span>
+<span class="text-primary text-sm font-bold bg-primary/10 px-2 py-1 rounded">-25% AKCIÓ</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-green-500 text-base">local_shipping</span>
+                                Ingyenes szállítás és 30 napos visszaküldési garancia.
+                            </p>
+</div>
+<div class="flex flex-col gap-4">
+<p class="text-slate-700 dark:text-slate-300 leading-relaxed">
+                                Fedezze fel a tiszta hangzás új dimenzióját a legújabb aktív zajszűrős fejhallgatónkkal. Akár utazik, akár a munkahelyén koncentrál, a 40 órás üzemidő és a prémium bőr fülpárnák egész napos kényelmet biztosítanak.
+                            </p>
+<!-- Specifications Summary -->
+<div class="grid grid-cols-2 gap-y-3 gap-x-6 bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl">
+<div class="flex flex-col">
+<span class="text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider font-bold">Akkumulátor</span>
+<span class="text-slate-900 dark:text-slate-100 text-sm font-medium">Akár 40 óra</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider font-bold">Kapcsolat</span>
+<span class="text-slate-900 dark:text-slate-100 text-sm font-medium">Bluetooth 5.2 &amp; Jack</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider font-bold">Súly</span>
+<span class="text-slate-900 dark:text-slate-100 text-sm font-medium">250g</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider font-bold">Garancia</span>
+<span class="text-slate-900 dark:text-slate-100 text-sm font-medium">2 év gyártói</span>
+</div>
+</div>
+</div>
+<!-- Purchase Actions -->
+<div class="flex flex-col gap-4 mt-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center border border-slate-300 dark:border-slate-700 rounded-lg h-12">
+<button class="px-4 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<input class="w-12 text-center border-none bg-transparent focus:ring-0 font-bold" type="number" value="1"/>
+<button class="px-4 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<button class="flex-1 bg-primary hover:bg-primary/90 text-white font-bold h-12 rounded-lg flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">shopping_cart</span>
+                                    Kosárba teszem
+                                </button>
+<button class="h-12 w-12 flex items-center justify-center border border-slate-300 dark:border-slate-700 rounded-lg text-slate-500 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 transition-all">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+</div>
+<!-- Technical Specs Tabs (Simulation) -->
+<div class="mt-8">
+<div class="flex border-b border-slate-200 dark:border-slate-800 gap-8">
+<button class="pb-3 text-primary border-b-2 border-primary font-bold text-sm">Részletes leírás</button>
+<button class="pb-3 text-slate-500 dark:text-slate-400 font-medium text-sm hover:text-slate-700 dark:hover:text-slate-200">Műszaki adatok</button>
+<button class="pb-3 text-slate-500 dark:text-slate-400 font-medium text-sm hover:text-slate-700 dark:hover:text-slate-200">Szállítási infók</button>
+</div>
+<div class="py-6 space-y-4">
+<p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                                    A legkorszerűbb hybrid zajszűrési technológia képes blokkolni a külső zajok 95%-át, így zavartalanul élvezheti kedvenc zenéit vagy podcastjait. A gyorstöltési funkciónak köszönhetően mindössze 10 perc töltéssel 5 órányi használatot biztosít.
+                                </p>
+<ul class="text-slate-700 dark:text-slate-300 text-sm space-y-2 list-disc pl-5">
+<li>Hi-Res Audio támogatás vezeték nélküli módban is</li>
+<li>Beépített 4 mikrofonos hívásszűrés a kristálytiszta beszélgetésekért</li>
+<li>Összehajtható kialakítás a könnyű hordozhatóságért</li>
+<li>Prémium hordtáska és USB-C töltőkábel a csomagban</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Reviews Section -->
+<div class="mt-20 pt-10 border-t border-slate-200 dark:border-slate-800">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
+<div>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Vásárlói vélemények</h2>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Összesen 124 vélemény alapján</p>
+</div>
+<button class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-6 py-2 rounded-lg font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                            Vélemény írása
+                        </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Review Card 1 -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">KB</div>
+<div>
+<h4 class="text-sm font-bold">Kovács Béla</h4>
+<div class="flex text-amber-400 text-xs">
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+</div>
+</div>
+<span class="ml-auto text-[10px] text-slate-400">2 napja</span>
+</div>
+<p class="text-slate-700 dark:text-slate-300 text-sm italic">
+                                "Egyszerűen fantasztikus! A zajszűrés sokkal jobb, mint vártam. A hangzásvilág pedig nagyon kiegyensúlyozott."
+                            </p>
+</div>
+<!-- Review Card 2 -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">TA</div>
+<div>
+<h4 class="text-sm font-bold">Tóth Anna</h4>
+<div class="flex text-amber-400 text-xs">
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs">star</span>
+</div>
+</div>
+<span class="ml-auto text-[10px] text-slate-400">1 hete</span>
+</div>
+<p class="text-slate-700 dark:text-slate-300 text-sm italic">
+                                "Szuper kényelmes, órákig hordható. Egyetlen negatívum, hogy a tok picit nagy a táskámba, de megéri."
+                            </p>
+</div>
+<!-- Review Card 3 -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">NL</div>
+<div>
+<h4 class="text-sm font-bold">Nagy László</h4>
+<div class="flex text-amber-400 text-xs">
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+</div>
+</div>
+<span class="ml-auto text-[10px] text-slate-400">2 hete</span>
+</div>
+<p class="text-slate-700 dark:text-slate-300 text-sm italic">
+                                "Profi termék, gyors szállítás. Már az első nap imádtam, az akkumulátor tényleg bírja napokig."
+                            </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-20 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-900 py-12 px-6 md:px-20">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-2xl">shopping_bag</span>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Modern Webshop</h2>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                            A legjobb technológiai termékek egy helyen. Minőség, garancia és gyors szállítás minden rendeléshez.
+                        </p>
+</div>
+<div>
+<h4 class="text-slate-900 dark:text-slate-100 font-bold mb-4">Vásárlás</h4>
+<ul class="flex flex-col gap-2 text-sm text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Termékkategóriák</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Akciós termékek</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Újdonságok</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-slate-900 dark:text-slate-100 font-bold mb-4">Ügyfélszolgálat</h4>
+<ul class="flex flex-col gap-2 text-sm text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Szállítási információk</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Garancia és elállás</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Gyakori kérdések</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-slate-900 dark:text-slate-100 font-bold mb-4">Hírlevél</h4>
+<div class="flex gap-2">
+<input class="bg-slate-100 dark:bg-slate-900 border-none rounded-lg text-sm flex-1 focus:ring-primary" placeholder="Email címed" type="email"/>
+<button class="bg-primary text-white px-4 py-2 rounded-lg font-bold text-sm">Feliratkozás</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto pt-10 mt-10 border-t border-slate-200 dark:border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest font-medium">
+<p>© 2024 Modern Webshop. Minden jog fenntartva.</p>
+<div class="flex gap-6">
+<a href="#">ÁSZF</a>
+<a href="#">Adatkezelési tájékoztató</a>
+<a href="#">Cookie szabályzat</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+
+```</body></html>
