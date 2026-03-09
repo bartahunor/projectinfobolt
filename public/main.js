@@ -51,6 +51,9 @@ function loadGrid() {
           </div>
       </div>
     `;
+    prodDiv.addEventListener("click", () => {
+      window.location.href = `/product.html?id=${p.id}`
+    });
     grid.appendChild(prodDiv);
   });
 }
