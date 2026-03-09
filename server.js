@@ -11,10 +11,18 @@ app.use(cors())
 app.use(express.json())
 app.use(express.static('public'))
 
-// SELECT
 app.get('/api/items', async (req, res) => {
-  const data = await sql`select * from products`
+  const data = await sql`
+    SELECT
+      products.*,
+      product_types.name AS type_name,
+      manufacturers.name AS manufacturer_name
+    FROM products
+    JOIN product_types ON products.type_id = product_types.id
+    JOIN manufacturers ON products.manufacturer_id = manufacturers.id
+  `
   res.json(data)
+  console.log(data)
 })
 
 
