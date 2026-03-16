@@ -1,31 +1,25 @@
 products = null;
-async function loadItems() {
-  const res = await fetch('/api/items')
-  const items = await res.json()
 
-  console.log(items)
+async function loadItems() {
+  const res = await fetch('/api/items');
+  const items = await res.json();
   products = items;
   loadGrid();
 }
-loadItems()
+loadItems();
+
 
 function loadGrid() {
-  let grid = document.getElementById("product-grid")
+  let grid = document.getElementById("product-grid");
   grid.innerHTML = "";
   products.forEach(p => {
-    const prodDiv = document.createElement("div")
+    const prodDiv = document.createElement("div");
+    prodDiv.id = `product-${p.id}`;                   // ← id hozzáadva
     prodDiv.classList.add(
-      "bg-white",
-      "dark:bg-slate-900",
-      "rounded-xl",
-      "overflow-hidden",
-      "border",
-      "border-slate-200",
-      "dark:border-slate-800",
-      "group",
-      "hover:shadow-xl",
-      "transition-all",
-      "duration-300"
+      "bg-white", "dark:bg-slate-900", "rounded-xl",
+      "overflow-hidden", "border", "border-slate-200",
+      "dark:border-slate-800", "group", "hover:shadow-xl",
+      "transition-all", "duration-300"
     );
     prodDiv.innerHTML = `
       <div class="relative aspect-square bg-slate-100 dark:bg-slate-800 overflow-hidden">
@@ -41,7 +35,6 @@ function loadGrid() {
           <div class="flex items-center gap-1 mb-4">
               <span class="material-symbols-outlined text-yellow-400 text-sm fill-1">shelves</span>
               <span class="text-sm font-semibold">${p.quantity}db készleten</span>
-              <span class="text-xs text-slate-400"></span>
           </div>
           <div class="flex items-center justify-between mt-auto">
               <span class="text-xl font-black">${p.price_huf} Ft</span>
@@ -51,8 +44,9 @@ function loadGrid() {
           </div>
       </div>
     `;
+
     prodDiv.addEventListener("click", () => {
-      window.location.href = `/product.html?id=${p.id}`
+      window.location.href = `/product.html?id=${p.id}`;
     });
     grid.appendChild(prodDiv);
   });
