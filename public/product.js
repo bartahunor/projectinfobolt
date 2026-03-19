@@ -41,4 +41,57 @@ async function loadProduct() {
     document.getElementById('spec-name-three').textContent = product.specs[2].name;
     document.getElementById('spec-value-three').textContent = product.specs[2].value;
     document.getElementById('prodnum').textContent = "Cikkszám: " + product.id;
+
+    document.getElementById('add-to-cart').addEventListener('click', addToCart);
+}
+
+const minusBtn = document.getElementById('minus-btn');
+const plusBtn = document.getElementById('plus-btn');
+const quantityCounter = document.getElementById('quantity-counter');
+
+minusBtn.addEventListener('click', () => {
+    let currentValue = parseInt(quantityCounter.value);
+    if (currentValue > 1) {
+        quantityCounter.value = currentValue - 1;
+    }
+});
+
+plusBtn.addEventListener('click', () => {
+    let currentValue = parseInt(quantityCounter.value);
+    quantityCounter.value = currentValue + 1;
+});
+
+async function addToCart() {
+  const id = document.getElementById('prodnum').textContent.split(': ')[1];
+  const name = document.getElementById('prod-name').textContent;
+  const priceText = document.getElementById('price').textContent;
+  const price = parseInt(priceText.replace(' Ft', ''));
+  const qty = parseInt(quantityCounter.value);
+  const image_url = document.getElementById('prod-pic').getAttribute('data-alt');
+
+  try {
+    
+
+    const res = await fetch(`${API_URL}/cart/add`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        productId: id,
+        name: name,
+        price: price,
+        qty: qty,
+        image_url: image_url
+      }),
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || 'Hiba történt');
+    }
+
+    console.log(`Termék hozzáadva a kosárhoz: ${name} (${qty} db)`);
+  } catch (err) {
+    console.error('Kosár hiba:', err.message);
+    
+  }
 }

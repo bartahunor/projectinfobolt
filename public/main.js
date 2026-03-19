@@ -1,7 +1,7 @@
 products = null;
-
+const API_URL = 'http://localhost:3000';
 async function loadItems() {
-  const res = await fetch('/api/items');
+  const res = await fetch(`${API_URL}/api/items`);
   const items = await res.json();
   products = items;
   loadGrid();
@@ -38,12 +38,51 @@ function loadGrid() {
           </div>
           <div class="flex items-center justify-between mt-auto">
               <span class="text-xl font-black">${p.price_huf} Ft</span>
-              <button class="bg-primary hover:bg-primary/90 text-white p-2.5 rounded-lg flex items-center justify-center transition-colors">
+              <button class="bg-primary hover:bg-primary/90 text-white p-2.5 rounded-lg flex items-center justify-center transition-colors cart-btn">
                   <span class="material-symbols-outlined">add_shopping_cart</span>
               </button>
           </div>
       </div>
     `;
+
+    const cartBtn = prodDiv.querySelector('.cart-btn');
+      cartBtn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+
+        try {
+          cartBtn.disabled = true;
+
+          const res = await fetch(`${API_URL}/cart/add`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              productId: p.id,
+              name: p.model,
+              price: p.price_huf,
+              qty: 1,
+              image_url: p.image_url
+            }),
+          });
+
+          if (!res.ok) {
+            const err = await res.json();
+            throw new Error(err.error || 'Hiba történt');
+          }
+
+          const icon = cartBtn.querySelector('.material-symbols-outlined');
+          icon.textContent = 'check';
+          setTimeout(() => {
+            icon.textContent = 'add_shopping_cart';
+            cartBtn.disabled = false;
+          }, 1500);
+
+          console.log(`Termék hozzáadva a kosárhoz: ${p.model}`);
+
+        } catch (err) {
+          console.error('Kosár hiba:', err.message);
+          cartBtn.disabled = false;
+        }
+      });
 
     prodDiv.addEventListener("click", () => {
       window.location.href = `/product.html?id=${p.id}`;

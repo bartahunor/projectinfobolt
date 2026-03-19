@@ -58,6 +58,38 @@ app.get('/api/items/:id', async (req, res) => {
 })
 
 
+/* ------------ CART ------------- */
+let cart = []; // globális kosár
+
+app.post('/cart/add', (req, res) => {
+  const { productId, name, price, qty = 1, image_url } = req.body;
+
+  const existing = cart.find(item => item.productId === productId);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({ productId, name, price, qty, image_url });
+  }
+  console.log(`Kosár frissítve: ${name} (${qty}db)`);
+  res.json({ cart });
+});
+
+app.get('/cart', (req, res) => {
+  res.json({ cart });
+});
+
+app.post('/cart/remove', (req, res) => {
+  cart = cart.filter(item => item.productId !== req.body.productId);
+  res.json({ cart });
+});
+
+app.post('/cart/clear', (req, res) => {
+  cart = [];
+  res.json({ cart });
+});
+
+
+
 app.listen(3000, () =>
   console.log('http://localhost:3000')
 )
