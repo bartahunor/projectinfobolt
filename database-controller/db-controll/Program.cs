@@ -18,9 +18,12 @@ class Program
 
             while (true)
             {
+                Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\n--- Menü ---");
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("╔══════════════════════════════════════╗");
+                Console.WriteLine("║           TERMÉKKEZELŐ MENÜ          ║");
+                Console.WriteLine("╠══════════════════════════════════════╣");
+                Console.ResetColor();
                 Console.WriteLine("\n1 - Termékek listázása");
                 Console.WriteLine("2 - Új termék hozzáadása");
                 Console.WriteLine("3 - Termék módosítása");
@@ -30,11 +33,12 @@ class Program
                 Console.WriteLine("6 - Új termék típus hozzáadása");
                 Console.WriteLine("7 - Gyártó törlése");
                 Console.WriteLine("8 - Termék típus törlése");
-                Console.WriteLine("9 - Termék spec kezelése");
                 Console.WriteLine();
                 Console.WriteLine("0 - Kilépés");
-                Console.WriteLine();
-
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("╚══════════════════════════════════════╝");
+                Console.ResetColor();
+                Console.Write("Választás: ");
                 var choice = Console.ReadLine();
 
                 if (choice == "1")
@@ -53,8 +57,6 @@ class Program
                     DeleteManufacturer(conn);
                 else if (choice == "8")
                     DeleteProductType(conn);
-                else if (choice == "9")
-                    ManageSpecs(conn);
                 else if (choice == "0")
                     break;
             }
@@ -186,11 +188,11 @@ class Program
         Console.Write("Kép URL: ");
         var image = Console.ReadLine();
 
-        // INSERT product
+        // --- Új termék mentése ---
         var sql = @"INSERT INTO products 
-            (id, type_id, manufacturer_id, model, price_huf, quantity, short_description, image_url)
-            VALUES (gen_random_uuid(), @type_id, @manufacturer_id, @model, @price, @quantity, @desc, @image)
-            RETURNING id";
+                (id, type_id, manufacturer_id, model, price_huf, quantity, short_description, image_url)
+                VALUES (gen_random_uuid(), @type_id, @manufacturer_id, @model, @price, @quantity, @desc, @image)
+                RETURNING id";
 
         Guid newProductId;
         using (var cmd = new NpgsqlCommand(sql, conn))
@@ -208,99 +210,40 @@ class Program
 
         Console.WriteLine("Termék sikeresen hozzáadva!");
 
-        // --- Spec-ek kiválasztása 3 db ---
-        var availableSpecs = GetSpecNames(conn); // csak a nevek
-        if (availableSpecs.Count > 0)
+        // --- 3 Spec megadása ---
+        for (int i = 1; i <= 3; i++)
         {
-            Console.WriteLine("\nVálaszd ki a hozzáadandó 3 spec-et:");
-
-            for (int i = 0; i < availableSpecs.Count; i++)
+            Console.Write($"{i}/3 Specifikus adat neve: ");
+            var specName = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(specName))
             {
-                Console.WriteLine($"{i + 1} - {availableSpecs[i]}");
+                Console.WriteLine("A spec név nem lehet üres!");
+                i--; // újra kérjük ugyanazt a spec-et
+                continue;
             }
 
-            var selectedSpecs = new List<string>();
-            while (selectedSpecs.Count < 3)
+            Console.Write($"{i}/3 Specifikus adat értéke: ");
+            var specValue = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(specValue))
             {
-                Console.Write($"Spec szám ({selectedSpecs.Count + 1}/3): ");
-                var input = Console.ReadLine();
-                if (int.TryParse(input, out int index) && index >= 1 && index <= availableSpecs.Count)
-                {
-                    var specName = availableSpecs[index - 1];
-                    if (!selectedSpecs.Contains(specName))
-                        selectedSpecs.Add(specName);
-                    else
-                        Console.WriteLine("Ezt a spec-et már kiválasztottad!");
-                }
-                else
-                {
-                    Console.WriteLine("Érvénytelen szám, próbáld újra.");
-                }
+                Console.WriteLine("A spec értéke nem lehet üres!");
+                i--; // újra kérjük ugyanazt a spec-et
+                continue;
             }
 
-            foreach (var spec in selectedSpecs)
-            {
-                Console.Write($"{spec} érték: ");
-                var value = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(value))
-                {
-                    InsertProductSpec(conn, newProductId, spec, value);
-                }
-            }
+            // --- Spec mentése ---
+            var sqlSpec = @"INSERT INTO product_specs (id, product_id, spec_name, spec_value)
+                        VALUES (gen_random_uuid(), @product_id, @spec_name, @spec_value)";
+            using var cmdSpec = new NpgsqlCommand(sqlSpec, conn);
+            cmdSpec.Parameters.AddWithValue("product_id", newProductId);
+            cmdSpec.Parameters.AddWithValue("spec_name", specName);
+            cmdSpec.Parameters.AddWithValue("spec_value", specValue);
+            cmdSpec.ExecuteNonQuery();
         }
+
+        Console.WriteLine("Spec-ek sikeresen hozzáadva a termékhez!");
     }
 
-    // --- Spec kezelés ---
-    static void ManageSpecs(NpgsqlConnection conn)
-    {
-        while (true)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\n--- Spec Menü ---");
-            Console.ResetColor();
-            Console.WriteLine("1 - Spec-ek listázása");
-            Console.WriteLine("2 - Új spec hozzáadása");
-            Console.WriteLine("0 - Vissza a főmenübe");
-            Console.Write("Választás: ");
-            var choice = Console.ReadLine();
-
-            if (choice == "1")
-            {
-                var specs = GetAllSpecs(conn);
-                if (specs.Count == 0)
-                    Console.WriteLine("Nincsenek spec-ek az adatbázisban.");
-                else
-                {
-                    Console.WriteLine("\n--- Spec-ek ---");
-                    foreach (var s in specs)
-                        Console.WriteLine($"{s.id} | {s.name} | {s.value}");
-                }
-            }
-            else if (choice == "2")
-            {
-                Console.Write("Spec név: ");
-                var name = Console.ReadLine();
-                Console.Write("Spec érték: ");
-                var value = Console.ReadLine();
-
-                if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(value))
-                {
-                    Console.WriteLine("A spec név és érték nem lehet üres!");
-                    continue;
-                }
-
-                var sql = @"INSERT INTO product_specs (id, product_id, spec_name, spec_value)
-                            VALUES (gen_random_uuid(), NULL, @name, @value)";
-                using var cmd = new NpgsqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("name", name);
-                cmd.Parameters.AddWithValue("value", value);
-                cmd.ExecuteNonQuery();
-
-                Console.WriteLine("Spec sikeresen hozzáadva!");
-            }
-            else if (choice == "0") break;
-        }
-    }
 
     // --- Helper metódusok ---
     static List<(string id, string name)> GetLookupTable(NpgsqlConnection conn, string tableName)
@@ -332,16 +275,7 @@ class Program
         return list;
     }
 
-    static void InsertProductSpec(NpgsqlConnection conn, Guid productId, string specName, string specValue)
-    {
-        var sql = @"INSERT INTO product_specs (id, product_id, spec_name, spec_value)
-                    VALUES (gen_random_uuid(), @product_id, @spec_name, @spec_value)";
-        using var cmd = new NpgsqlCommand(sql, conn);
-        cmd.Parameters.AddWithValue("product_id", productId);
-        cmd.Parameters.AddWithValue("spec_name", specName);
-        cmd.Parameters.AddWithValue("spec_value", specValue);
-        cmd.ExecuteNonQuery();
-    }
+
 
     static List<(string id, string name, string value)> GetAllSpecs(NpgsqlConnection conn)
     {
