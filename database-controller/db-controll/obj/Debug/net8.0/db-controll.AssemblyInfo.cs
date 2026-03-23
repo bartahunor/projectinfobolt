@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("db-controll")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7ff16612ca27ed3e1f1ae8e55f0c092bad535650")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed11c4b80dea92fd89f84d707867f4d683d8d958")]
 [assembly: System.Reflection.AssemblyProductAttribute("db-controll")]
 [assembly: System.Reflection.AssemblyTitleAttribute("db-controll")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

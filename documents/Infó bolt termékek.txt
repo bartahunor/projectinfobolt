@@ -1,0 +1,42 @@
+Infó bolt termékek :
+1. Termék:(új paraméter)
+terméktípus: fejhallgató 
+gyártó: Logitech 
+név: Logitech PRO X 2LIGHTSPEED
+rövid leírás: A Logitech Pro X 2 Lightspeed Gaming fejhallgató a professzionális játékosok igényeire lett tervezve, hogy a legmagasabb szintű teljesítményt nyújtsa. Ezzel a fejhallgatóval minden lépést, akciót és taktikai mozdulatot hallhatsz, ami a grafén hangsugárzóknak és a LIGHTSPEED vezeték nélküli technológiának köszönhető.
+képcím: https://content.konzolvilag.hu/product_instances_cover/Konzolvilag_1/1399540/pc-logitech-pro-x-2-lightspeed-gaming-headset-white-981-001269_thumb674.webp?lmod=1723129588
+db: 10
+ár: 75 444
+specifikációk:  üzemidő - 50 óra
+		mikrofonn - 6 mm-es kardioid
+		hangsugárzók - 50 mm-es grafén
+
+
+2. Termék:(Új paraméter)
+terméktípus: kontroller
+gyártó: Razer Wolverine
+név: Razer Wolverine V3 Pro PC vezeték nélküli kontroller
+rövid leírás: aradj egy lépéssel, egy lövéssel és egy szinttel a versenytársak felett a Razer Wolverine V3 Pro-val – a vezeték nélküli esport-vezérlővel. 
+Hivatalos Xbox licenccel, játssz úgy, mint a világ legjobbjai konzolon és PC-n, gyorsasággal, irányítással és pontossággal, ami segít a győzelemért.
+képcím: https://s13emagst.akamaized.net/products/104237/104236099/images/res_9445672941b6a9cf8a277618b1db9898.png?width=450&height=450&hash=8112CD57A08480336AED4B60C4A5AFA5
+db: 25
+ár: 102 447
+specfikációk:   Kapcsolat típusa - Wireless
+		Platform - PC
+		Akkumulátor típusa - Li-Ion
+
+
+3. Termék:(már eleve benne lévő paraméterek)
+terméktípus: processzor
+gyártó: AMD
+név: Ryzen 5 7600 processzor
+rövid leírás: Az AM5 foglalat az AMD legfrissebb asztali processzorplatformja, amely DDR5 memória- és PCIe 5.0-támogatással készült. Minden AMD AM5 alaplap kompatibilis az összes AM5 processzorral — azaz például a Ryzen 7000, Ryzen 8000 és Ryzen 9000 modellek is használhatók rajta, szükség esetén BIOS-frissítéssel.
+képcím: https://2.pcx.hu/pcx_prod_img/19/m/198238_1.webp?202603230405
+db: 200
+ár: 57 890
+specifikációk:  Memóriacsatornák - Kétcsatornás
+		Processzormagok - 6
+		Processzor modell - 7600
+
+
+
