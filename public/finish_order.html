@@ -103,8 +103,8 @@
 </div>
 <div class="space-y-2">
 <p class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Vevő</p>
-<p class="font-bold text-slate-900 dark:text-white"></p><!-- Név betöltése -->
-<p class="text-sm text-slate-600 dark:text-slate-400"></p><!-- Lakcím -->
+<p class="font-bold text-slate-900 dark:text-white" id="customer-name"></p><!-- Név betöltése -->
+<p class="text-sm text-slate-600 dark:text-slate-400" id="address"></p><!-- Lakcím -->
 </div>
 </div>
 <!-- Itemized List -->
@@ -118,7 +118,7 @@
 <th class="py-4 text-sm font-bold text-slate-900 dark:text-white text-right">Összesen</th>
 </tr>
 </thead>
-<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800" id="ordered-items">
 <tr>
 <td class="py-4">
 <p class="font-medium text-slate-900 dark:text-white">Pro Studio Fejhallgató - Fekete</p><!-- termek neve -->
@@ -137,15 +137,15 @@
 <div class="w-full max-w-xs space-y-3">
 <div class="flex justify-between text-sm">
 <span class="text-slate-500">Nettó összesen:</span>
-<span class="text-slate-900 dark:text-white font-medium"></span><!-- össz ár -->
+<span class="text-slate-900 dark:text-white font-medium" id="original-price"></span><!-- össz ár -->
 </div>
 <div class="flex justify-between text-sm">
 <span class="text-slate-500">ÁFA (27%):</span>
-<span class="text-slate-900 dark:text-white font-medium"></span><!-- áfa ftbe kiszámítva -->
+<span class="text-slate-900 dark:text-white font-medium" id="tax-rate"></span><!-- áfa ftbe kiszámítva -->
 </div>
 <div class="border-t border-slate-200 dark:border-slate-700 pt-3 flex justify-between items-center">
 <span class="text-lg font-bold text-slate-900 dark:text-white">Bruttó fizetendő:</span>
-<span class="text-2xl font-bold text-primary"></span><!-- ár áfával -->
+<span class="text-2xl font-bold text-primary" id="taxed-price"></span><!-- ár áfával -->
 </div>
 </div>
 </div>
@@ -192,4 +192,5 @@
             </div>
 </footer>
 </div>
+<script src="JS/finish.js"></script>
 </body></html>

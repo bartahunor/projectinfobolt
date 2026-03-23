@@ -88,6 +88,81 @@ app.post('/cart/clear', (req, res) => {
   res.json({ cart });
 });
 
+app.post('/cart/update', (req, res) => {
+  const { productId, qty } = req.body;
+
+  if (qty < 1) {
+    return res.status(400).json({ error: 'A mennyiség nem lehet kisebb 1-nél' });
+  }
+
+  const item = cart.find(item => item.productId === productId);
+  if (!item) {
+    return res.status(404).json({ error: 'A termék nincs a kosárban' });
+  }
+
+  item.qty = qty;
+  res.json({ cart });
+});
+
+/* -------------- ORDER ------------ */
+let lastOrder = null  // ← új változó
+
+app.post('/api/order', async (req, res) => {
+    const { firstname, lastname, email, address, postalcode, cardnum, expiredate, cvc } = req.body
+
+    if (!firstname || !lastname || !email || !address || !postalcode || !cardnum || !expiredate || !cvc) {
+        return res.status(400).json({ success: false, message: 'Hiányzó adatok!' })
+    }
+
+    try {
+        const result = await sql`
+            INSERT INTO orders (firstname, lastname, email, address, postalcode, cart)
+            VALUES (
+                ${firstname},
+                ${lastname},
+                ${email},
+                ${address},
+                ${postalcode},
+                ${JSON.stringify(cart)}
+            )
+            RETURNING id
+        `
+
+        // Elmentjük a rendelés adatait lekérés előtt
+        lastOrder = {
+            orderId: result[0].id,
+            firstname,
+            lastname,
+            email,
+            address,
+            postalcode,
+            cart: [...cart]  // másolat, ne a referencia
+        }
+
+
+        res.status(201).json({
+            success: true,
+            message: 'Rendelés sikeresen leadva!',
+            orderId: result[0].id
+        })
+
+    } catch (error) {
+        console.error('❌ Rendelés mentési hiba:', error)
+        res.status(500).json({ success: false, message: 'Szerver hiba történt!' })
+    }
+})
+
+app.get('/api/order/summary', (req, res) => {
+    if (!lastOrder) {
+        return res.status(404).json({ success: false, message: 'Nincs rendelési adat!' })
+    }
+
+    const orderData = { ...lastOrder }
+    lastOrder = null
+    cart = []
+
+    res.json({ success: true, order: orderData })
+})
 
 
 app.listen(3000, () =>

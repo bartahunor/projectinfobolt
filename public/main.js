@@ -76,7 +76,7 @@ function loadGrid() {
             cartBtn.disabled = false;
           }, 1500);
 
-          console.log(`Termék hozzáadva a kosárhoz: ${p.model}`);
+          console.log(`Termék hozzáadva a kosárhoz: ${p.model}, kép: ${p.image_url}`);
 
         } catch (err) {
           console.error('Kosár hiba:', err.message);

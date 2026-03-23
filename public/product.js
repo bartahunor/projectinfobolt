@@ -89,7 +89,7 @@ async function addToCart() {
       throw new Error(err.error || 'Hiba történt');
     }
 
-    console.log(`Termék hozzáadva a kosárhoz: ${name} (${qty} db)`);
+    console.log(`Termék hozzáadva a kosárhoz: ${name} (${qty} db), kép: ${image_url}`);
   } catch (err) {
     console.error('Kosár hiba:', err.message);
     
