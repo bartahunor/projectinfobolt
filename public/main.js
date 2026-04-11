@@ -1,12 +1,30 @@
 products = null;
 const API_URL = 'http://localhost:3000';
+
+window.addEventListener("DOMContentLoaded", async () => {
+  await includeHTML("header", "/pieces/header.html");
+  await includeHTML("footer", "/pieces/footer.html");
+
+  await updateCartCount();
+  loadItems();
+});
+
+async function includeHTML(id, file) {  
+  const response = await fetch(file);
+  if (response.ok) {
+    document.getElementById(id).innerHTML = await response.text();
+  } else {
+    console.error(`Nem sikerült betölteni: ${file}`);
+  }
+};
+
 async function loadItems() {
   const res = await fetch(`${API_URL}/api/items`);
   const items = await res.json();
   products = items;
   loadGrid();
 }
-loadItems();
+
 
 
 function loadGrid() {
@@ -82,6 +100,8 @@ function loadGrid() {
           console.error('Kosár hiba:', err.message);
           cartBtn.disabled = false;
         }
+
+        updateCartCount();
       });
 
     prodDiv.addEventListener("click", () => {
@@ -89,4 +109,19 @@ function loadGrid() {
     });
     grid.appendChild(prodDiv);
   });
+}
+
+async function updateCartCount() {
+    const res = await fetch(`${API_URL}/api/cart/count`);
+    const data = await res.json();
+    
+    const badge = document.getElementById('cart-count');
+    if (!badge) return;
+
+    if (data.count > 0) {
+        badge.textContent = data.count;
+        badge.classList.remove('hidden');
+    } else {
+        badge.classList.add('hidden');
+    }
 }

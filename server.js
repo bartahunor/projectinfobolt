@@ -104,9 +104,19 @@ app.post('/cart/update', (req, res) => {
   res.json({ cart });
 });
 
+app.get('/api/cart/count', (req, res) => {
+    const count = cart.reduce((sum, item) => sum + item.qty, 0)
+    res.json({ count })
+})
+
+app.post('/cart/remove', (req, res) => {
+    const { productId } = req.body
+    cart = cart.filter(item => item.productId !== productId)
+    res.json({ success: true })
+});
+
 /* -------------- ORDER ------------ */
 let lastOrder = null  // ← új változó
-
 app.post('/api/order', async (req, res) => {
     const { firstname, lastname, email, address, postalcode, cardnum, expiredate, cvc } = req.body
 
@@ -128,7 +138,15 @@ app.post('/api/order', async (req, res) => {
             RETURNING id
         `
 
-        // Elmentjük a rendelés adatait lekérés előtt
+        // ← ÚJ RÉSZ: készlet csökkentése minden rendelt termékre
+        for (const item of cart) {
+            await sql`
+                UPDATE products
+                SET quantity = quantity - ${item.qty}
+                WHERE id = ${item.productId} AND quantity >= ${item.qty}
+            `
+        }
+
         lastOrder = {
             orderId: result[0].id,
             firstname,
@@ -136,9 +154,8 @@ app.post('/api/order', async (req, res) => {
             email,
             address,
             postalcode,
-            cart: [...cart]  // másolat, ne a referencia
+            cart: [...cart]
         }
-
 
         res.status(201).json({
             success: true,

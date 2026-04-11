@@ -1,5 +1,37 @@
 const API_URL = 'http://localhost:3000';
 
+window.addEventListener("DOMContentLoaded", async () => {
+  await includeHTML("header", "/pieces/header.html");
+  await includeHTML("footer", "/pieces/footer.html");
+
+  await updateCartCount();
+  loadCart();
+});
+
+async function includeHTML(id, file) {  
+  const response = await fetch(file);
+  if (response.ok) {
+    document.getElementById(id).innerHTML = await response.text();
+  } else {
+    console.error(`Nem sikerült betölteni: ${file}`);
+  }
+};
+
+async function updateCartCount() {
+    const res = await fetch(`${API_URL}/api/cart/count`);
+    const data = await res.json();
+    
+    const badge = document.getElementById('cart-count');
+    if (!badge) return;
+
+    if (data.count > 0) {
+        badge.textContent = data.count;
+        badge.classList.remove('hidden');
+    } else {
+        badge.classList.add('hidden');
+    }
+}
+
 let cartItems = [];
 async function loadCart() {
   const res = await fetch(`${API_URL}/cart`);
@@ -12,6 +44,19 @@ async function loadCart() {
 }
 loadCart();
 
+async function removeFromCart(productId, itemDiv) {
+    await fetch(`${API_URL}/cart/remove`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ productId })
+    });
+
+    cartItems = cartItems.filter(i => i.productId !== productId);
+    itemDiv.remove();
+    cartPrice();
+    updateCartCount();
+}
+
 function renderCart(){
     const cartContainer = document.getElementById('cart-items');
     cartContainer.innerHTML = '';
@@ -23,7 +68,12 @@ function renderCart(){
                 <img class="w-full h-full object-cover" data-alt="${item.name}" src="${item.image_url}"/>
             </div>
             <div class="flex-grow">
-                <h3 class="font-semibold text-lg">${item.name}</h3>
+                <div class="flex items-start justify-between">
+                    <h3 class="font-semibold text-lg">${item.name}</h3>
+                    <button class="delete-btn ml-4 p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">delete</span>
+                    </button>
+                </div>
                 <div class="mt-4 flex items-center justify-between">
                     <div class="flex items-center border border-slate-200 dark:border-slate-700 rounded-lg">
                         <button class="minus-btn px-3 py-1 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500">-</button>
@@ -37,11 +87,15 @@ function renderCart(){
             </div>`;
         cartContainer.appendChild(itemDiv);
 
-        // id helyett class alapján keressük, az adott itemDiv-en belül
         const minusBtn = itemDiv.querySelector('.minus-btn');
         const plusBtn = itemDiv.querySelector('.plus-btn');
+        const deleteBtn = itemDiv.querySelector('.delete-btn');
         const quantityCounter = itemDiv.querySelector('.quantity-counter');
         const priceEl = itemDiv.querySelector('.item-price');
+
+        deleteBtn.addEventListener('click', () => {
+            removeFromCart(item.productId, itemDiv);
+        });
 
         minusBtn.addEventListener('click', async () => {
             let currentValue = parseInt(quantityCounter.textContent);
@@ -58,6 +112,7 @@ function renderCart(){
                 });
 
                 cartPrice();
+                updateCartCount();
             }
         });
 
@@ -75,6 +130,7 @@ function renderCart(){
             });
 
             cartPrice();
+            updateCartCount();
         });
     });
 }

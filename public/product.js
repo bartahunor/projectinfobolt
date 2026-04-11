@@ -3,7 +3,8 @@ const API_URL = 'http://localhost:3000';
 window.addEventListener("DOMContentLoaded", async () => {
   await includeHTML("header", "/pieces/header.html");
   await includeHTML("footer", "/pieces/footer.html");
-
+  
+  await updateCartCount();
   loadProduct();
 });
 
@@ -15,6 +16,21 @@ async function includeHTML(id, file) {
     console.error(`Nem sikerült betölteni: ${file}`);
   }
 };
+
+async function updateCartCount() {
+    const res = await fetch(`${API_URL}/api/cart/count`);
+    const data = await res.json();
+    
+    const badge = document.getElementById('cart-count');
+    if (!badge) return;
+
+    if (data.count > 0) {
+        badge.textContent = data.count;
+        badge.classList.remove('hidden');
+    } else {
+        badge.classList.add('hidden');
+    }
+}
 
 async function loadProduct() {
     const params = new URLSearchParams(window.location.search);
@@ -94,4 +110,6 @@ async function addToCart() {
     console.error('Kosár hiba:', err.message);
     
   }
+
+  updateCartCount();
 }
